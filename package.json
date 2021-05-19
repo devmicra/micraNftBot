@@ -1,0 +1,20 @@
+{
+  "name": "micraNftBot",
+  "version": "1.0.0",
+  "description": "NFT BOT",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devmicra/micraNftBot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devmicra/micraNftBot/issues"
+  },
+  "homepage": "https://github.com/devmicra/micraNftBot#readme"
+}
