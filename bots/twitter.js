@@ -12,6 +12,7 @@ const options = {
   }
 }
 
+var trending
 
 async function robot() {
   console.log('\x1b[33m%s\x1b[0m', '> [twitter-bot] Starting...');
@@ -55,22 +56,24 @@ async function robot() {
 
     console.log('Uma trending com ' + '\x1b[33m%s\x1b[0m', Math.max(maxVolumeTweet) + '\x1b[37m', 'tweets foi encontrada...')
 
-    let trending
-    
     for (i = 0; i < trendingTopics.length; i++) {
       if (Math.max(maxVolumeTweet) == parseInt(trendingTopics[i].tweet_volume)) {
         trending = trendingTopics[i].name
       }
     }
-
-    console.log('Esse trending é ' + '\x1b[33m%s\x1b[0m', trending);
-
-
   }
+  console.log('Esse trending é ' + '\x1b[33m%s\x1b[0m', trending);
+
+  return trending
 }
+
+function getTrending(){
+  return trending
+}
+
 module.exports = {
   robot,
-
+  getTrending
 }
 
 
