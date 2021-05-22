@@ -1,10 +1,12 @@
-const twitter = require('./bots/twitter.js')
+const twitterTrending = require('./bots/twitterTrending.js')
 const text = require('./bots/text.js')
+const twitterPost = require('./bots/twitterPost.js')
 
 
 async function start() {
-    await twitter.robot()
-    await text.robot(twitter.getTrending())
+    await twitterTrending.robot()
+    await text.robot(twitterTrending.getTrending())
+    await twitterPost.robot(text.getContent())
 }
 
 start()
