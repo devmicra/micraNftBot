@@ -7,6 +7,9 @@ async function start() {
     await twitterTrending.robot()
     await text.robot(twitterTrending.getTrending())
     await twitterPost.robot(text.getContent())
+
+    await start()
+
 }
 
 start()

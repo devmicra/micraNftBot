@@ -13,7 +13,7 @@ const options = {
 }
 
 var content = {
-  trending:''
+  trending: ''
 }
 
 async function robot() {
@@ -42,35 +42,40 @@ async function robot() {
 
   if (fetchTwitterTrendingTopics) {
 
-    console.log('\u001b[33m> [twitter-robot] \u001b[37mFound\u001b[33m '+fetchTwitterTrendingTopics[0].trends.length+'\u001b[37m trendings')
+    console.log('\u001b[33m> [twitter-robot] \u001b[37mFound\u001b[33m ' + fetchTwitterTrendingTopics[0].trends.length + '\u001b[37m trendings')
 
     const trendingTopics = fetchTwitterTrendingTopics[0].trends
     // console.log(trendingTopics);
+    //////////////////////////////////////////////////////////////////////////////////
+    //   let maxVolumeTweet = ([])
 
-    let maxVolumeTweet = ([])
+    // for (i = 0; i < trendingTopics.length; i++) {
+    //   if (!!parseInt(trendingTopics[i].tweet_volume)) {
+    //     maxVolumeTweet = parseInt(trendingTopics[i].tweet_volume)
+    //     // console.log(trendingTopics[i].tweet_volume);
+    //   }
+    // }
 
-    for (i = 0; i < trendingTopics.length; i++) {
-      if (!!parseInt(trendingTopics[i].tweet_volume)) {
-        maxVolumeTweet = parseInt(trendingTopics[i].tweet_volume)
-        // console.log(trendingTopics[i].tweet_volume);
-      }
-    }
+    // console.log('\u001b[33m> [twitter-robot] \u001b[37mFound a trend with\u001b[33m', Math.max(maxVolumeTweet) + '\u001b[37m tweets')
 
-    console.log('\u001b[33m> [twitter-robot] \u001b[37mFound a trend with\u001b[33m', Math.max(maxVolumeTweet) + '\u001b[37m tweets')
-
-    for (i = 0; i < trendingTopics.length; i++) {
-      if (Math.max(maxVolumeTweet) == parseInt(trendingTopics[i].tweet_volume)) {
-        content.trending = trendingTopics[i].name
-      }
-    }
+    // for (i = 0; i < trendingTopics.length; i++) {
+    //   if (Math.max(maxVolumeTweet) == parseInt(trendingTopics[i].tweet_volume)) {
+    //     content.trending = trendingTopics[i].name
+    //   }
+    // }
+    content.trending = trendingTopics[Math.round(Math.random() * (trendingTopics.length - 1))].name
   }
-  console.log('\u001b[33m> [twitter-robot] \u001b[37mThis trend is\u001b[33m', content.trending);
-  // console.log(content);
+  // console.log('\u001b[33m> [twitter-robot] \u001b[37mThis trend is\u001b[33m', content.trending);
+  // // console.log(content);
+  ////////////////////////////////////////////////////////////////////////////////////////
+
+
+  console.log('\u001b[33m> [twitter-robot] \u001b[37mThe random trend is\u001b[33m', content.trending);
 
   return content
 }
 
-function getTrending(){
+function getTrending() {
   return content
 }
 

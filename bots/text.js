@@ -22,13 +22,14 @@ async function robot(data) {
         console.log('\u001b[36m> [text-robot]\u001b[37m Find suggestion from Wikipedia')
 
         const numberMaxsuggestions = 20
-        const wikipediaSuggestion = await wiki.suggest(content.trending)
-        console.log('\u001b[36m> [text-robot]\u001b[37m The initial suggestion is\u001b[36m', wikipediaSuggestion)
+        // const wikipediaSuggestion = await wiki.suggest(content.trending)
+        // console.log(wikipediaSuggestion);
+        // console.log('\u001b[36m> [text-robot]\u001b[37m The initial suggestion is\u001b[36m', wikipediaSuggestion)
 
-        const searchResults = await wiki.search(wikipediaSuggestion, { suggestion: true, limit: numberMaxsuggestions });
-        content.term = await searchResults.results[Math.round(Math.random() * (searchResults.results.length))].title
+        const searchResults = await wiki.search(content.trending, { suggestion: true, limit: numberMaxsuggestions });
+        content.term = await searchResults.results[Math.round(Math.random() * (searchResults.results.length-1))].title
 
-        console.log('\u001b[36m> [text-robot]\u001b[37m The final suggestion is\u001b[36m', content.term)
+        console.log('\u001b[36m> [text-robot]\u001b[37m The suggestion is\u001b[36m', content.term)
         console.log('\u001b[36m> [text-robot]\u001b[37m Fetching content from Wikipedia')
 
         const wikipediaPage = await wiki.page(content.term)
