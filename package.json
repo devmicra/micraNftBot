@@ -19,9 +19,11 @@
   },
   "homepage": "https://github.com/devmicra/micraNftBot#readme",
   "dependencies": {
-    "algorithmia": "^0.3.10",
     "dotenv": "^9.0.2",
     "node-fetch": "^2.6.1",
+    "sentence-tokenizer": "^1.0.1",
+    "twitter": "^1.7.1",
+    "wikipedia": "^1.1.1",
     "woeid": "^2.0.3"
   },
   "devDependencies": {}

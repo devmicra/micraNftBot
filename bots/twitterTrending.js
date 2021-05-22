@@ -12,17 +12,19 @@ const options = {
   }
 }
 
-var trending
+var content = {
+  trending:''
+}
 
 async function robot() {
-  console.log('\x1b[33m%s\x1b[0m', '> [twitter-bot] Starting...');
+  console.log('\u001b[33m> [twitter-robot] Starting')
 
   // get WOEID 
   const woeidData = woeid.getWoeid(process.env.CURRENT_LOCAL)
   const localName = woeidData.country
   const localId = woeidData.woeid
 
-  console.log("Inicializando buscas de trending topics para " + '\x1b[33m%s\x1b[0m', localName + '\x1b[37m', '...')
+  console.log('\u001b[33m> [twitter-robot] \u001b[37mSearching trending topics in\u001b[33m ' + localName)
 
   const fetchTwitterTrendingTopics = await fetch(
     'https://api.twitter.com/1.1/trends/place.json?id=' + localId,
@@ -31,7 +33,7 @@ async function robot() {
     if (res.ok) {
       return res.json()
     } else {
-      throw new Error('Something went wrong');
+      throw new Error('\u001b[33m> [twitter-robot] \u001bSomething went wrong');
     }
   })
     .catch((error) => {
@@ -40,7 +42,7 @@ async function robot() {
 
   if (fetchTwitterTrendingTopics) {
 
-    console.log('\x1b[33m%s\x1b[0m', fetchTwitterTrendingTopics[0].trends.length + '\x1b[37m', 'trending topics encontradas...')
+    console.log('\u001b[33m> [twitter-robot] \u001b[37mFound\u001b[33m '+fetchTwitterTrendingTopics[0].trends.length+'\u001b[37m trendings')
 
     const trendingTopics = fetchTwitterTrendingTopics[0].trends
     // console.log(trendingTopics);
@@ -54,21 +56,22 @@ async function robot() {
       }
     }
 
-    console.log('Uma trending com ' + '\x1b[33m%s\x1b[0m', Math.max(maxVolumeTweet) + '\x1b[37m', 'tweets foi encontrada...')
+    console.log('\u001b[33m> [twitter-robot] \u001b[37mFound a trend with\u001b[33m', Math.max(maxVolumeTweet) + '\u001b[37m tweets')
 
     for (i = 0; i < trendingTopics.length; i++) {
       if (Math.max(maxVolumeTweet) == parseInt(trendingTopics[i].tweet_volume)) {
-        trending = trendingTopics[i].name
+        content.trending = trendingTopics[i].name
       }
     }
   }
-  console.log('Esse trending é ' + '\x1b[33m%s\x1b[0m', trending);
+  console.log('\u001b[33m> [twitter-robot] \u001b[37mThis trend is\u001b[33m', content.trending);
+  // console.log(content);
 
-  return trending
+  return content
 }
 
 function getTrending(){
-  return trending
+  return content
 }
 
 module.exports = {
